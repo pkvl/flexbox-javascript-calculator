@@ -51,6 +51,17 @@ function changeValue(e) {
         return;
     }
 
+    if (e.keyCode === decimalPointKeyCode) {
+        const regex = /\./;
+        if (textField.innerHTML.match(regex)) {
+            textField.innerHTML = textField.innerHTML.slice(0, -1);
+            return;
+        } else {
+            textField.innerHTML += '.';
+        }
+        return;
+    }
+
     if (digitsCodes.includes(e.keyCode)) {
         textField.innerHTML += e.key;
         return;
@@ -79,6 +90,7 @@ const actionsCodes = [111, 106, 109, 107];
 const resultKeyCode = 13;
 const clearKeyCode = 46;
 const removeKeyCode = 8;
+const decimalPointKeyCode = 110;
 
 window.onload = transitionLogic;
 window.addEventListener('keydown', addTransition);
