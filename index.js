@@ -31,8 +31,13 @@ function removeTransition(e) {
 }
 
 function changeValue(e) {
+    if(isCannotDivideByZeroMessage()) {
+        clearData();
+        textField.innerHTML = "";
+    }
+
     if (e.keyCode === clearKeyCode) {
-        operatorOne = symbol = operatorTwo = null;
+        clearData();
         textField.innerHTML = "";
     }
 
@@ -63,6 +68,9 @@ function changeValue(e) {
     }
 
     if (digitsCodes.includes(e.keyCode)) {
+        if (operatorOne !== null) {
+            textField.innerHTML = "";
+        }
         textField.innerHTML += e.key;
         return;
     }
@@ -71,12 +79,23 @@ function changeValue(e) {
 function selectAction(key) {
     symbol = key;
     operatorOne = textField.innerHTML;
-    textField.innerHTML = "";
 }
 
 function getResult() {
     operatorTwo = textField.innerHTML;
+    if (parseInt(operatorTwo) == 0 && symbol === '/') {
+        textField.innerHTML = 'Cannot divide by zero';
+        return;
+    }
     textField.innerHTML = eval(`${operatorOne}${symbol}${operatorTwo}`);
+}
+
+function isCannotDivideByZeroMessage() {
+    return textField.innerHTML === 'Cannot divide by zero';
+}
+
+function clearData() {
+    operatorOne = symbol = operatorTwo = null;
 }
 
 let operatorOne;
