@@ -68,7 +68,7 @@ function changeValue(e) {
     }
 
     if (digitsCodes.includes(e.keyCode)) {
-        if (operatorOne !== null) {
+        if (symbol !== undefined) {
             textField.innerHTML = "";
         }
         textField.innerHTML += e.key;
