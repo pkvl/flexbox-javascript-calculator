@@ -18,8 +18,8 @@ function addClickTransition(e) {
     if (!e.target.classList.contains('item')) return;
     e.target.classList.add('pressed');
 
-    const keyCode = parseInt(e.target.getAttribute('data-key'));
-    const key = actionsCodes.includes(parseInt(e.target.getAttribute('data-key'))) ? e.target.innerHTML : parseInt(e.target.innerHTML);
+    const keyCode = Number(e.target.getAttribute('data-key'));
+    const key = actionsCodes.includes(Number(e.target.getAttribute('data-key'))) ? e.target.innerHTML : Number(e.target.innerHTML);
 
     let button = { key, keyCode };
     changeValue(button);
@@ -31,7 +31,7 @@ function removeTransition(e) {
 }
 
 function changeValue(e) {
-    if(isCannotDivideByZeroMessage()) {
+    if (isCannotDivideByZeroMessage()) {
         clearData();
         textField.innerHTML = "";
     }
@@ -39,24 +39,13 @@ function changeValue(e) {
     if (e.keyCode === clearKeyCode) {
         clearData();
         textField.innerHTML = "";
-    }
-
-    if (e.keyCode === resultKeyCode) {
+    } else if (e.keyCode === resultKeyCode) {
         if (operatorOne !== null) getResult();
-        return;
-    }
-
-    if (actionsCodes.includes(e.keyCode)) {
+    } else if (actionsCodes.includes(e.keyCode)) {
         selectAction(e.key);
-        return;
-    }
-
-    if (e.keyCode === removeKeyCode) {
+    } else if (e.keyCode === removeKeyCode) {
         textField.innerHTML = textField.innerHTML.slice(0, -1);
-        return;
-    }
-
-    if (e.keyCode === decimalPointKeyCode) {
+    } else if (e.keyCode === decimalPointKeyCode) {
         const regex = /\./;
         if (textField.innerHTML.match(regex)) {
             textField.innerHTML = textField.innerHTML.slice(0, -1);
@@ -64,30 +53,27 @@ function changeValue(e) {
         } else {
             textField.innerHTML += '.';
         }
-        return;
-    }
-
-    if (digitsCodes.includes(e.keyCode)) {
+    } else if (digitsCodes.includes(e.keyCode)) {
         if (symbol !== undefined) {
-            textField.innerHTML = "";
+            // textField.innerHTML = "";
         }
         textField.innerHTML += e.key;
-        return;
     }
 }
 
 function selectAction(key) {
     symbol = key;
     operatorOne = textField.innerHTML;
+    textField.innerHTML = "";
 }
 
 function getResult() {
     operatorTwo = textField.innerHTML;
-    if (parseInt(operatorTwo) == 0 && symbol === '/') {
+    if (Number(operatorTwo) == 0 && symbol === '/') {
         textField.innerHTML = 'Cannot divide by zero';
         return;
     }
-    textField.innerHTML = eval(`${operatorOne}${symbol}${operatorTwo}`);
+    operantorOne = textField.innerHTML = eval(`${operatorOne}${symbol}${operatorTwo}`);
 }
 
 function isCannotDivideByZeroMessage() {

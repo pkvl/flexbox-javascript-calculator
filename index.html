@@ -18,37 +18,51 @@
         </div>
         <div class="container">
             <div class="item item-clear" data-key="46">C</div>
-            <div class="item item-remove" data-key="8"><-</div>
-        </div>
-        <div class="container">
-            <div class="item item-divide" data-key="111">/</div>
-            <div class="item item-multiply" data-key="106">*</div>
-            <div class="item item-substract" data-key="109">-</div>
-            <div class="item item-add" data-key="107">+</div>
-        </div>
-        <div class="container">
-            <div class="item item-first" data-key="55">7</div>
-            <div class="item item-second" data-key="56">8</div>
-            <div class="item item-third" data-key="57">9</div>
-        </div>
-        <div class="container">
-            <div class="item item-first" data-key="52">4</div>
-            <div class="item item-second" data-key="53">5</div>
-            <div class="item item-third" data-key="54">6</div>
+            <div class="item item-remove" data-key="8">
+                <-</div>
+            </div>
+            <div class="container">
+                <div class="item item-divide" data-key="111">/</div>
+                <div class="item item-multiply" data-key="106">*</div>
+                <div class="item item-substract" data-key="109">-</div>
+                <div class="item item-add" data-key="107">+</div>
+            </div>
+            <div class="container">
+                <div class="item item-first" data-key="55">7</div>
+                <div class="item item-second" data-key="56">8</div>
+                <div class="item item-third" data-key="57">9</div>
+            </div>
+            <div class="container">
+                <div class="item item-first" data-key="52">4</div>
+                <div class="item item-second" data-key="53">5</div>
+                <div class="item item-third" data-key="54">6</div>
 
+            </div>
+            <div class="container">
+                <div class="item item-first" data-key="49">1</div>
+                <div class="item item-second" data-key="50">2</div>
+                <div class="item item-third" data-key="51">3</div>
+            </div>
+            <div class="container">
+                <div class="item item-first" data-key="110">.</div>
+                <div class="item item-second" data-key="48">0</div>
+                <div class="item item-third" data-key="13">=</div>
+            </div>
         </div>
-        <div class="container">
-            <div class="item item-first" data-key="49">1</div>
-            <div class="item item-second" data-key="50">2</div>
-            <div class="item item-third" data-key="51">3</div>
-        </div>
-        <div class="container">
-            <div class="item item-first" data-key="110">.</div>
-            <div class="item item-second" data-key="48">0</div>
-            <div class="item item-third" data-key="13">=</div>
-        </div>
-    </div>
 
+        <script>
+            var twoSum = function (nums, target) {
+                for (var i = 0; i < nums.length; i++) {
+                    for (var j = i + 1; j < nums.length; j++) {
+                        if (nums[j] == target - nums[i]) {
+                            return [i, j];
+                        }
+                    }
+                }
+            };
+
+            console.log(twoSum([2, 7, 11, 13], 9));
+        </script>
 </body>
 
 </html>
